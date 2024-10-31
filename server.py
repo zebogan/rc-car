@@ -9,6 +9,7 @@ import logging
 import socketserver
 from http import server
 from threading import Condition
+import pwm
 
 from picamera2 import Picamera2
 from picamera2.encoders import JpegEncoder
@@ -53,6 +54,11 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         else:
             self.send_error(404)
             self.end_headers()
+    def do_POST(self):
+        content_len = int(self.headers.get('Content-Length'))
+        post_body = self.rfile.read(content_len)
+        print(post_body)
+    
 
 
 class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
