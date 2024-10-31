@@ -1,6 +1,6 @@
 import cv2, pygame, numpy
 
-stream = cv2.VideoCapture('http://10.240.33.129:8000/stream.mjpg')
+stream = cv2.VideoCapture('http://10.240.33.129:10001/stream.mjpg')
 
 screen_width, screen_height = 1200, 800
 screen=pygame.display.set_mode((screen_width,screen_height))
