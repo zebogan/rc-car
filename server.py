@@ -4,6 +4,7 @@ import socketserver
 from http import server
 from threading import Condition
 import motor
+import json
 
 from picamera2 import Picamera2
 from picamera2.encoders import JpegEncoder
@@ -51,7 +52,15 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
     def do_POST(self):
         content_len = int(self.headers.get('Content-Length'))
         post_body = self.rfile.read(content_len)
-        print(post_body)
+        j = json.loads(post_body)
+        if j['direction'] == 'f':
+            motor.forward()
+        if j['direction'] == 'b':
+            motor.back()
+        if j['direction'] == 'r':
+            motor.right()
+        if j['direction'] == 'l':
+            motor.left()
     
 
 
