@@ -3,7 +3,7 @@ import logging
 import socketserver
 from http import server
 from threading import Condition
-import pwm
+import motor
 
 from picamera2 import Picamera2
 from picamera2.encoders import JpegEncoder
