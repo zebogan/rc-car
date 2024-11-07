@@ -1,4 +1,4 @@
-import cv2, pygame, numpy
+import cv2, pygame, numpy, requests
 
 stream = cv2.VideoCapture('http://10.240.33.129:10001/stream.mjpg')
 
@@ -14,3 +14,4 @@ while (stream.isOpened()):
         frame=pygame.surfarray.make_surface(img)
         screen.blit(frame, (0,0))
         pygame.display.flip()
+        requests.post("http://10.240.33.129:10001", json={'test': 'h'})

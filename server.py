@@ -2,6 +2,7 @@ import io
 import logging
 import socketserver
 from http import server
+from http.server import ThreadingHTTPServer
 from threading import Condition
 import motor
 
@@ -67,7 +68,7 @@ picam2.start_recording(JpegEncoder(), FileOutput(output))
 
 try:
     address = ('', 10001)
-    server = StreamingServer(address, StreamingHandler)
+    server = ThreadingHTTPServer(address, StreamingHandler)
     server.serve_forever()
 finally:
     picam2.stop_recording()
