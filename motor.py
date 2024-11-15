@@ -20,7 +20,7 @@ def forward():
     gpio.output(pin12, gpio.LOW)
     gpio.output(pin21, gpio.HIGH)
     gpio.output(pin22, gpio.LOW)
-    time.sleep(1)
+    time.sleep(0.1)
     gpio.cleanup()
 
 def back():
@@ -29,7 +29,7 @@ def back():
     gpio.output(pin12, gpio.HIGH)
     gpio.output(pin21, gpio.LOW)
     gpio.output(pin22, gpio.HIGH)
-    time.sleep(1)
+    time.sleep(0.1)
     gpio.cleanup()
 
 def left():
@@ -38,7 +38,7 @@ def left():
     gpio.output(pin12, gpio.HIGH)
     gpio.output(pin21, gpio.HIGH)
     gpio.output(pin22, gpio.LOW)
-    time.sleep(1)
+    time.sleep(0.1)
     gpio.cleanup()
 
 def right():
@@ -47,5 +47,5 @@ def right():
     gpio.output(pin12, gpio.LOW)
     gpio.output(pin21, gpio.LOW)
     gpio.output(pin22, gpio.HIGH)
-    time.sleep(1)
+    time.sleep(0.1)
     gpio.cleanup()

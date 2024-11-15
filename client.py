@@ -19,10 +19,10 @@ while (stream.isOpened() and going):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = numpy.rot90(img)
         screen.fill(0)
+        direction = ''
         frame=pygame.surfarray.make_surface(img)
         screen.blit(frame, (0,0))
         pygame.display.flip()
-        direction = ''
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.KEYDOWN:
