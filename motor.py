@@ -49,3 +49,4 @@ def stop():
 def close():
     stop()
     gpio.cleanup()
+    print('close')
