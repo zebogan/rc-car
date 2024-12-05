@@ -14,6 +14,8 @@ def init():
     gpio.setup(pin21, gpio.OUT)
     gpio.setup(pin22, gpio.OUT)
 
+init()
+
 def forward():
     gpio.output(pin11, gpio.HIGH)
     gpio.output(pin12, gpio.LOW)
