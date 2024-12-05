@@ -55,6 +55,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         j = json.loads(post_body)
         if j['direction'] == 'f':
             motor.forward()
+            print('f')
         if j['direction'] == 'b':
             motor.back()
         if j['direction'] == 'r':
