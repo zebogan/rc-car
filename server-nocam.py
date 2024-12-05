@@ -64,6 +64,8 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             motor.left()
         elif j['direction'] == 'stop':
             motor.stop()
+        elif j['direction'] == 'close':
+            motor.close()
     
 
 

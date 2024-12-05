@@ -29,6 +29,7 @@ while (going):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     going = False
+                    threading.Thread(target=send_req, args=('close',)).start()
                     print('closing')
                 elif event.key == pygame.K_w:
                     direction = 'f'

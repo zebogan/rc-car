@@ -45,3 +45,7 @@ def stop():
     gpio.output(pin12, gpio.LOW)
     gpio.output(pin21, gpio.LOW)
     gpio.output(pin22, gpio.LOW)
+
+def close():
+    stop()
+    gpio.cleanup()
