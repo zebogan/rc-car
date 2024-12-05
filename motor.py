@@ -15,37 +15,31 @@ def init():
     gpio.setup(pin22, gpio.OUT)
 
 def forward():
-    init()
     gpio.output(pin11, gpio.HIGH)
     gpio.output(pin12, gpio.LOW)
     gpio.output(pin21, gpio.HIGH)
     gpio.output(pin22, gpio.LOW)
-    time.sleep(0.1)
-    gpio.cleanup()
 
 def back():
-    init()
     gpio.output(pin11, gpio.LOW)
     gpio.output(pin12, gpio.HIGH)
     gpio.output(pin21, gpio.LOW)
     gpio.output(pin22, gpio.HIGH)
-    time.sleep(0.1)
-    gpio.cleanup()
 
 def left():
-    init()
     gpio.output(pin11, gpio.LOW)
     gpio.output(pin12, gpio.HIGH)
     gpio.output(pin21, gpio.HIGH)
     gpio.output(pin22, gpio.LOW)
-    time.sleep(0.1)
-    gpio.cleanup()
 
 def right():
-    init()
     gpio.output(pin11, gpio.HIGH)
     gpio.output(pin12, gpio.LOW)
     gpio.output(pin21, gpio.LOW)
     gpio.output(pin22, gpio.HIGH)
-    time.sleep(0.1)
-    gpio.cleanup()
+
+def stop():
+    gpio.output(pin11, gpio.LOW)
+    gpio.output(pin12, gpio.LOW)
+    gpio.output(pin21, gpio.LOW)
+    gpio.output(pin22, gpio.LOW)

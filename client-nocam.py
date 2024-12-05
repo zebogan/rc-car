@@ -45,6 +45,7 @@ while (going):
             if event.type == pygame.KEYUP:
                 if event.key in [pygame.K_w, pygame.K_s, pygame.K_d, pygame.K_a]:
                     direction = None
+                    threading.Thread(target=send_req, args=('stop',)).start()
         if direction:
             threading.Thread(target=send_req, args=(direction,)).start()
 
