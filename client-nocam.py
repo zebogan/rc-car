@@ -6,8 +6,9 @@ screen_width, screen_height = 1200, 800
 screen=pygame.display.set_mode((screen_width,screen_height))
 
 going = True
+direction = None
 
-def send_req():
+def send_req(direction):
     try:
         requests.post("http://10.240.33.129:10001", json={'direction': direction})
     except:
@@ -36,6 +37,11 @@ while (going):
                     direction = 'r'
                 elif event.key == pygame.K_a:
                     direction = 'l'
-        if going:
-            threading.Thread(target=send_req).start()
+            if event.type == pygame.KEYUP:
+                if event.key in [pygame.K_w, pygame.K_s, pygame.K_d, pygame.K_a]:
+                    direction = None
+        if direction:
+            threading.Thread(target=send_req, args=(direction,)).start()
+
+        pygame.time.delay(100)
 
