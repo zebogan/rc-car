@@ -53,17 +53,25 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         content_len = int(self.headers.get('Content-Length'))
         post_body = self.rfile.read(content_len)
         j = json.loads(post_body)
-        if j['direction'] == 'f':
+        direction = j['direction']
+
+        if 'f' in direction and 'b' in direction:
+            motor.stop() 
+        elif 'f' in direction:
             motor.forward()
-        if j['direction'] == 'b':
+        elif 'b' in direction:
             motor.back()
-        if j['direction'] == 'r':
-            motor.right()
-        if j['direction'] == 'l':
+        
+        if 'l' in direction and 'r' in direction:
+            motor.stop() 
+        elif 'l' in direction:
             motor.left()
-    	elif j['direction'] == 'stop':
+        elif 'r' in direction:
+            motor.right()
+
+        if 'stop' in direction:
             motor.stop()
-        elif j['direction'] == 'close':
+        if 'close' in direction:
             motor.close()
 
 

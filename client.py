@@ -6,7 +6,7 @@ screen_width, screen_height = 1200, 800
 screen=pygame.display.set_mode((screen_width,screen_height))
 
 going = True
-direction = None
+current_directions = set()
 
 def send_req(direction):
     try:
@@ -32,19 +32,27 @@ while (stream.isOpened() and going):
                     threading.Thread(target=send_req, args=('close',)).start()
                     print('closing')
                 elif event.key == pygame.K_w:
-                    direction = 'f'
+                    current_directions.add('f')
                 elif event.key == pygame.K_s:
-                    direction = 'b'
+                    current_directions.add('b')
                 elif event.key == pygame.K_d:
-                    direction = 'r'
+                    current_directions.add('r')
                 elif event.key == pygame.K_a:
-                    direction = 'l'
+                    current_directions.add('l')
             if event.type == pygame.KEYUP:
-                if event.key in [pygame.K_w, pygame.K_s, pygame.K_d, pygame.K_a]:
-                    direction = None
+                if event.key == pygame.K_w:
+                    current_directions.discard('f')
+                elif event.key == pygame.K_s:
+                    current_directions.discard('b')
+                elif event.key == pygame.K_d:
+                    current_directions.discard('r')
+                elif event.key == pygame.K_a:
+                    current_directions.discard('l')
                     threading.Thread(target=send_req, args=('stop',)).start()
-        if direction:
-            threading.Thread(target=send_req, args=(direction,)).start()
-
+        if current_directions:
+            combined_direction = ''.join(sorted(current_directions))
+            threading.Thread(target=send_req, args=(combined_direction,)).start()
+        else:
+            threading.Thread(target=send_req, args=('stop',)).start()
+            
         pygame.time.delay(100)
-
