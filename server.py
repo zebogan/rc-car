@@ -61,7 +61,10 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             motor.right()
         if j['direction'] == 'l':
             motor.left()
-    
+    	elif j['direction'] == 'stop':
+            motor.stop()
+        elif j['direction'] == 'close':
+            motor.close()
 
 
 class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
@@ -73,6 +76,8 @@ picam2 = Picamera2()
 picam2.configure(picam2.create_video_configuration(main={"size": (1200, 800)}))
 output = StreamingOutput()
 picam2.start_recording(JpegEncoder(), FileOutput(output))
+
+print("setup done")
 
 try:
     address = ('', 10001)
