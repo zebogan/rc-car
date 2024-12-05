@@ -75,6 +75,8 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
 # output = StreamingOutput()
 # picam2.start_recording(JpegEncoder(), FileOutput(output))
 
+print("setup done")
+
 try:
     address = ('', 10001)
     server = StreamingServer(address, StreamingHandler)

@@ -29,14 +29,19 @@ while (going):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     going = False
+                    print('closing')
                 elif event.key == pygame.K_w:
                     direction = 'f'
+                    print('f')
                 elif event.key == pygame.K_s:
                     direction = 'b'
+                    print('b')
                 elif event.key == pygame.K_d:
                     direction = 'r'
+                    print('r')
                 elif event.key == pygame.K_a:
                     direction = 'l'
+                    print('l')
             if event.type == pygame.KEYUP:
                 if event.key in [pygame.K_w, pygame.K_s, pygame.K_d, pygame.K_a]:
                     direction = None
