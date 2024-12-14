@@ -1,6 +1,6 @@
 import cv2, pygame, numpy, requests, threading
 
-stream = cv2.VideoCapture('http://10.240.33.129:10001/stream.mjpg')
+server_ip = "10.0.0.22"
 
 screen_width, screen_height = 1200, 800
 screen=pygame.display.set_mode((screen_width,screen_height))
@@ -8,17 +8,19 @@ screen=pygame.display.set_mode((screen_width,screen_height))
 going = True
 current_directions = set()
 
+stream = cv2.VideoCapture(f'http://{server_ip}:10001/stream.mjpg')
+
 def send_req(direction):
     try:
-        requests.post("http://10.240.33.129:10001", json={'direction': direction})
+        requests.post(f"http://{server_ip}:10001", json={'direction': direction})
     except:
         pass
 
 while (stream.isOpened() and going):
     ret, img = stream.read()
     if ret:
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = numpy.rot90(img)
+        img = numpy.flip(img)
         screen.fill(0)
         direction = ''
         frame=pygame.surfarray.make_surface(img)
